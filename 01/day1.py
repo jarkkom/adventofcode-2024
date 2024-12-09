@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
 
-from pprint import pprint
-
-
 def read_input(file_path):
     with open(file_path, "r") as file:
         return file.read().strip().split("\n")
@@ -12,8 +9,8 @@ def read_input(file_path):
 def parse_input(lines):
     input = []
 
-    for l in lines:
-        nums = [int(n) for n in l.split("   ")]
+    for line in lines:
+        nums = [int(n) for n in line.split("   ")]
         input.append(nums)
 
     return input

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from pprint import pprint
 from itertools import pairwise
 
 
@@ -11,8 +10,8 @@ def read_input(file_path):
 
 def parse_input(lines):
     input = []
-    for l in lines:
-        nums = [int(n) for n in l.split(" ")]
+    for line in lines:
+        nums = [int(n) for n in line.split(" ")]
         input.append(nums)
 
     return input
@@ -37,12 +36,12 @@ def test_parse_input():
 
 
 def test_is_level_safe():
-    is_level_safe([7, 6, 4, 2, 1]) == True
-    is_level_safe([1, 2, 7, 8, 9]) == False
-    is_level_safe([9, 7, 6, 2, 1]) == False
-    is_level_safe([1, 3, 2, 4, 5]) == False
-    is_level_safe([8, 6, 4, 4, 1]) == False
-    is_level_safe([1, 3, 6, 7, 9]) == True
+    assert is_level_safe([7, 6, 4, 2, 1]) is True
+    assert is_level_safe([1, 2, 7, 8, 9]) is False
+    assert is_level_safe([9, 7, 6, 2, 1]) is False
+    assert is_level_safe([1, 3, 2, 4, 5]) is False
+    assert is_level_safe([8, 6, 4, 4, 1]) is False
+    assert is_level_safe([1, 3, 6, 7, 9]) is True
 
 
 def is_level_safe(level):
