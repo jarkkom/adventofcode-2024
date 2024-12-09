@@ -1,10 +1,35 @@
 #!/usr/bin/env python3
 
 
+from pprint import pprint
+
 def read_input(file_path):
     with open(file_path, "r") as file:
         return file.read().strip().split("\n")
     
+
+def parse_input(lines):
+    input = []
+
+    for l in lines:
+        nums = [int(n) for n in l.split("   ")]
+        input.append(nums)
+
+    pprint(input)
+
+    return input
+
+
+def test_parse_input():
+    test_lines = """
+3   4
+4   3
+2   5
+1   3
+3   9
+3   3"""
+    assert parse_input(test_lines.strip().split("\n")) == [[3, 4], [4, 3], [2, 5], [1, 3], [3, 9], [3, 3]]
+
 
 def solve_part_1(input):
 
@@ -12,7 +37,7 @@ def solve_part_1(input):
     b = []
 
     for i in input:
-        (aa, bb) = i.split("   ", 2)
+        (aa, bb) = i
 
         a.append(aa)
         b.append(bb)
@@ -27,13 +52,18 @@ def solve_part_1(input):
     return distance_sum
 
 
+def test_solve_part_1():
+    test_input = [[3, 4], [4, 3], [2, 5], [1, 3], [3, 9], [3, 3]]
+    assert solve_part_1(test_input) == 11
+
+
 def solve_part_2(input):
 
     a = []
     b = []
 
     for i in input:
-        (aa, bb) = i.split("   ", 2)
+        (aa, bb) = i
 
         a.append(aa)
         b.append(bb)
@@ -46,9 +76,14 @@ def solve_part_2(input):
     return similarity_score
 
 
-if __name__ == "__main__":
-    print(solve_part_1(read_input("01/sample.txt")))
-    print(solve_part_1(read_input("01/input.txt")))
+def test_solve_part_2():
+    test_input = [[3, 4], [4, 3], [2, 5], [1, 3], [3, 9], [3, 3]]
+    assert solve_part_2(test_input) == 31
 
-    print(solve_part_2(read_input("01/sample.txt")))
-    print(solve_part_2(read_input("01/input.txt")))
+
+if __name__ == "__main__":
+    print(solve_part_1(parse_input(read_input("01/sample.txt"))))
+    print(solve_part_1(parse_input(read_input("01/input.txt"))))
+
+    print(solve_part_2(parse_input(read_input("01/sample.txt"))))
+    print(solve_part_2(parse_input(read_input("01/input.txt"))))
