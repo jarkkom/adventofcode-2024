@@ -119,8 +119,10 @@ def test_solve_part_2():
 
 
 if __name__ == "__main__":
-    print(solve_part_1(parse_input(read_input("02/sample.txt"))))
-    print(solve_part_1(parse_input(read_input("02/input.txt"))))
+    sample = parse_input(read_input("02/sample.txt"))
+    input = parse_input(read_input("02/input.txt"))
+    print(f"part 1 sample {solve_part_1(sample)}")
+    print(f"part 1 solution {solve_part_1(input)}")
 
-    print(solve_part_2(parse_input(read_input("02/sample.txt"))))
-    print(solve_part_2(parse_input(read_input("02/input.txt"))))
+    print(f"part 2 sample {solve_part_2(sample)}")
+    print(f"part 2 solution {solve_part_2(input)}")
