@@ -3,10 +3,11 @@
 
 from pprint import pprint
 
+
 def read_input(file_path):
     with open(file_path, "r") as file:
         return file.read().strip().split("\n")
-    
+
 
 def parse_input(lines):
     input = []
@@ -28,7 +29,14 @@ def test_parse_input():
 1   3
 3   9
 3   3"""
-    assert parse_input(test_lines.strip().split("\n")) == [[3, 4], [4, 3], [2, 5], [1, 3], [3, 9], [3, 3]]
+    assert parse_input(test_lines.strip().split("\n")) == [
+        [3, 4],
+        [4, 3],
+        [2, 5],
+        [1, 3],
+        [3, 9],
+        [3, 3],
+    ]
 
 
 def solve_part_1(input):
@@ -46,7 +54,7 @@ def solve_part_1(input):
     b.sort()
 
     distance_sum = 0
-    for (left, right) in zip(a, b):
+    for left, right in zip(a, b):
         distance_sum += abs(int(left) - int(right))
 
     return distance_sum
@@ -58,7 +66,6 @@ def test_solve_part_1():
 
 
 def solve_part_2(input):
-
     a = []
     b = []
 
@@ -67,7 +74,6 @@ def solve_part_2(input):
 
         a.append(aa)
         b.append(bb)
-
 
     similarity_score = 0
     for aa in a:
