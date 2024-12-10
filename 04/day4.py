@@ -91,8 +91,61 @@ def test_solve_part_1():
     assert solve_part_1(test_input) == 4
 
 
+def check_xmas(input, x, y):
+    count_m = 0
+    count_s = 0
+
+    for dx, dy in [(-1, -1), (1, -1), (1, 1), (-1, 1)]:
+        if input[y + dy][x + dx] == "M" and input[y - dy][x - dx] == "S":
+            count_m += 1
+
+        if input[y + dy][x + dx] == "S" and input[y - dy][x - dx] == "M":
+            count_s += 1
+
+    if count_m == 2 and count_s == 2:
+        return True
+
+
+def solve_part_2(input):
+    found = 0
+
+    y_max = len(input)
+    x_max = len(input[0])
+
+    for y, row in enumerate(input):
+        for x, c in enumerate(row):
+            if x < 1 or y < 1 or x >= x_max - 1 or y >= y_max - 1:
+                continue
+
+            if c == "A":
+                if check_xmas(input, x, y):
+                    found += 1
+
+    return found
+
+
+def test_solve_part_2():
+    test_input = """
+.M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+..........
+"""
+    parsed_input = parse_input(test_input.strip().split("\n"))
+    assert solve_part_2(parsed_input) == 9
+
+
 if __name__ == "__main__":
     sample = parse_input(read_input("04/sample.txt"))
     input = parse_input(read_input("04/input.txt"))
     print(f"part 1 sample {solve_part_1(sample)}")
     print(f"part 1 {solve_part_1(input)}")
+
+    print(f"part 2 sample {solve_part_2(sample)}")
+    print(f"part 2 {solve_part_2(input)}")
