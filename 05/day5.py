@@ -156,9 +156,57 @@ def test_solve_part_1():
     assert solve_part_1(rules, pages) == 143
 
 
+def solve_part_2(rules, pages_list):
+    sum = 0
+
+    invalid_pages = []
+
+    for pages in pages_list:
+        eligible_rules = []
+        for rule in rules:
+            before, after = rule
+            if before in pages and after in pages:
+                eligible_rules.append(rule)
+
+        valid = True
+        for ix, page in enumerate(pages):
+            for before, after in eligible_rules:
+                if page == before and after in pages[:ix]:
+                    valid = False
+                    break
+            if not valid:
+                break
+
+        if not valid:
+            invalid_pages.append(pages)
+
+    for pages in invalid_pages:
+        eligible_rules = []
+        for rule in rules:
+            before, after = rule
+            if before in pages and after in pages:
+                eligible_rules.append(rule)
+
+        befores = {}
+        for e in eligible_rules:
+            before, after = e
+            if before not in befores:
+                befores[before] = 0
+            befores[before] += 1
+
+        sorted_pages = sorted(pages, key=lambda k: -befores.get(k, 0))
+        middle = sorted_pages[len(sorted_pages) // 2]
+        sum += int(middle)
+
+    return sum
+
+
 if __name__ == "__main__":
     sample_rules, sample_pages = parse_input(read_input("05/sample.txt"))
-    print(f"part 1 sample {solve_part_1(sample_rules, sample_pages)}")
-
     input_rules, input_pages = parse_input(read_input("05/input.txt"))
+
+    print(f"part 1 sample {solve_part_1(sample_rules, sample_pages)}")
     print(f"part 1 input {solve_part_1(input_rules, input_pages)}")
+
+    print(f"part 2 sample {solve_part_2(sample_rules, sample_pages)}")
+    print(f"part 1 input {solve_part_2(input_rules, input_pages)}")
