@@ -164,14 +164,14 @@ def solve_part_2(map, antennas):
                     ax -= dx
                     ay -= dy
 
-    for y in range(y_max):
-        for x in range(x_max):
-            if (x, y) in antipodes:
-                print("#", end="")
-            else:
-                print(map[y][x], end="")
+    # for y in range(y_max):
+    #     for x in range(x_max):
+    #         if (x, y) in antipodes:
+    #             print("#", end="")
+    #         else:
+    #             print(map[y][x], end="")
 
-        print()
+    #     print()
 
     return len(set(antipodes))
 
@@ -200,5 +200,5 @@ if __name__ == "__main__":
     print(f"part 1 sample = {solve_part_1(sample_map, sample_antennas)}")
     print(f"part 1 input = {solve_part_1(input_map, input_antennas)}")
 
-    print(f"part 1 sample = {solve_part_2(sample_map, sample_antennas)}")
-    print(f"part 1 input = {solve_part_2(input_map, input_antennas)}")
+    print(f"part 2 sample = {solve_part_2(sample_map, sample_antennas)}")
+    print(f"part 2 input = {solve_part_2(input_map, input_antennas)}")
